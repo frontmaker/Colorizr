@@ -2,10 +2,13 @@ import React, {PropTypes} from 'react';
 import ColorPicker from 'react-color-picker';
 import ChooseColorItem from '../../components/chooseColorItem/chooseColorItem';
 import './DarkerAndLighter.less';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {setColors} from '../../actions/changeColor';
 import 'react-color-picker/index.css'
 import DarkerAndLighterItem from '../../components/DarkerAndLighterItem/DarkerAndLighterItem';
 
-export default class DarkerAndLighter extends React.Component {
+class DarkerAndLighter extends React.Component {
     constructor(props) {
         super(props);
 
@@ -25,12 +28,15 @@ export default class DarkerAndLighter extends React.Component {
         });
     }
 
+
     render() {
         
+        let key = 0;
 
         const template = this.props.colorSet.map((item) => {
 
-            return  <DarkerAndLighterItem color={item} />;
+            return  <DarkerAndLighterItem key={key++} color={item} />;
+
         });
 
 
@@ -49,7 +55,11 @@ export default class DarkerAndLighter extends React.Component {
                     <div className="btn btn-default color-btn" onClick={() => this.setState({blockBg: !this.state.blockBg})}>
                         {`${this.state.blockBg ? 'Dark' : 'Light'} background`}
                     </div>
-                    <div className="btn btn-default select-btn">
+                    <div className="btn btn-default select-btn" onClick={() => {
+
+                        this.props.dispatch(setColors(this.props.colorSet));
+
+                    }}>
                         Select all
                     </div>
                 </div>
@@ -57,3 +67,20 @@ export default class DarkerAndLighter extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state, ownProps) {
+    return {
+        color: state.selectColor,
+        colors: state.selectedColors
+    };
+}
+
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: dispatch(setColors)
+    };
+}
+
+
+export default connect(mapStateToProps)(DarkerAndLighter);

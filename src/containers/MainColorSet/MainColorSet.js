@@ -21,8 +21,9 @@ class MainColorSet extends React.Component {
     removeColor(color) {
 
         this.props.dispatch(removeColor(color));
-        
+
     }
+
 
 
     renderColors() {
@@ -31,13 +32,15 @@ class MainColorSet extends React.Component {
         const {colors} = this.props;
         const {maxLength} = this.state;
 
+
         colors.forEach((item,i) => {
             if (arr.length >= maxLength) {
                 arr.splice(0,1);
+                // colors.splice(9,1);
             }
+            
 
             // arr.push(<div className="color-list__item" key={key} style={{'background': item}}></div>)
-
             arr.push(<ColorSetItem key={key++} remove={this.removeColor.bind(this)} color={item}/>)
         });
 
@@ -48,6 +51,9 @@ class MainColorSet extends React.Component {
             arr.push(<ColorSetItem key={key++}/>)
         }
 
+        if (colors > maxLength) {
+            colors.splice(0,10);
+        }
 
         return arr;
     }

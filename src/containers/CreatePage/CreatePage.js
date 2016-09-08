@@ -23,7 +23,7 @@ class CreatePage extends React.Component {
     this.style = {
       background: this.state.color
     }
-    
+
 
     this.onDrag = this.onDrag.bind(this);
   }
@@ -95,7 +95,7 @@ class CreatePage extends React.Component {
 
           if (!checking) {
 
-            upArray.push(result.toString());
+            upArray.push(`rgb(${result})`);
 
           }
 
@@ -117,7 +117,7 @@ class CreatePage extends React.Component {
 
           if (!checking2) {
 
-            downArray.push(done.toString());
+            downArray.push(`rgb(${done})`);
 
           }
 
@@ -139,6 +139,7 @@ class CreatePage extends React.Component {
     this.setState({
       colorSet: finalArray
     });
+    
   }
 
   titleColor() {
@@ -182,9 +183,11 @@ class CreatePage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    color: state.selectColor
+    color: state.selectColor,
+    colors: state.selectedColors
   };
 }
+
 
 function mapDispatchToProps(dispatch) {
   return {

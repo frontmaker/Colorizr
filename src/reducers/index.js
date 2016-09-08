@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import selectColor from './selectColorReducer';
-import selectedColors from './setColorsReducer';
+import selectedColors from './handleColors';
 
 const rootReducer = combineReducers({
   selectColor,

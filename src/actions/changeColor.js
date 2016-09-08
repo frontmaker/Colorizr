@@ -13,3 +13,13 @@ export const removeColor = (color) => {
         color: color
     }
 };
+
+
+
+export const setColors = (colors) => {
+    return {
+        type: 'SET_COLORS',
+        colors: colors
+    }
+};
+
