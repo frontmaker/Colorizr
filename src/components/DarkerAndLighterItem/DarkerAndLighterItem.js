@@ -20,6 +20,8 @@ const DarkerAndLighterItem = (props) => {
             
         }
 
+         props.update(props.color);
+
       }} style={{background: props.color}}>
       </div>
   )

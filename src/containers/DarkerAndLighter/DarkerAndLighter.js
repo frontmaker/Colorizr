@@ -15,9 +15,11 @@ class DarkerAndLighter extends React.Component {
         this.state = {
             blockBg: true,
             color: '#FFF',
-            arr: [1,2,3,4,5,6,7,8,9,10]
+            newArr: []
         }
 
+
+        this.arr = [];
         this.onDrag = this.onDrag.bind(this);
     }
 
@@ -29,16 +31,37 @@ class DarkerAndLighter extends React.Component {
     }
 
 
+    updateColors(color) {
+
+        // this.setState({
+        //     newArr: colors.push(color)
+        // });
+       this.arr.push(color);
+
+        console.log(this.arr);
+
+    }
+
     render() {
         
         let key = 0;
 
         const template = this.props.colorSet.map((item) => {
 
-            return  <DarkerAndLighterItem key={key++} color={item} />;
+            return  <DarkerAndLighterItem update={this.updateColors.bind(this)} key={key++} color={item} />;
 
         });
 
+        let removeAllBtn;
+
+
+        if (this.props.colors.length > 0) {
+            removeAllBtn = <div className="btn btn-default select-btn" onClick={() => {this.props.dispatch(setColors(this.arr))}}>
+                                Remove all
+                            </div>
+        } else {
+            removeAllBtn = ''
+        }
 
         return(
             <div>
@@ -71,7 +94,8 @@ class DarkerAndLighter extends React.Component {
 function mapStateToProps(state, ownProps) {
     return {
         color: state.selectColor,
-        colors: state.selectedColors
+        colors: state.selectedColors,
+        DarkerAndLighter: state.DarkerAndLighter
     };
 }
 

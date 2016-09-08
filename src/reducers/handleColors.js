@@ -12,7 +12,7 @@ export default function setColors(state = [], action) {
 
             return arr;
 
-        case 'SET_COLORS':
+        case 'SELECT_COLORS':
 
             return action.colors;
 

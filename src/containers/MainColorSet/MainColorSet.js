@@ -12,7 +12,8 @@ class MainColorSet extends React.Component {
         super(props);
 
         this.state = {
-            maxLength: 10
+            maxLength: 10,
+            selectedColors: []
         }
 
     }
@@ -36,13 +37,14 @@ class MainColorSet extends React.Component {
         colors.forEach((item,i) => {
             if (arr.length >= maxLength) {
                 arr.splice(0,1);
-                // colors.splice(9,1);
+                colors.splice(0,1);
             }
-            
+
 
             // arr.push(<div className="color-list__item" key={key} style={{'background': item}}></div>)
             arr.push(<ColorSetItem key={key++} remove={this.removeColor.bind(this)} color={item}/>)
         });
+
 
         let sum = this.state.maxLength - arr.length;
 
@@ -50,10 +52,8 @@ class MainColorSet extends React.Component {
             // arr.push(<div key={key} className="color-list__item"></div>);
             arr.push(<ColorSetItem key={key++}/>)
         }
+        
 
-        if (colors > maxLength) {
-            colors.splice(0,10);
-        }
 
         return arr;
     }
