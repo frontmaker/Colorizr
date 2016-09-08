@@ -1,13 +1,13 @@
 import React from 'react';
 import './DarkerAndLighterItem.less';
 import {connect} from 'react-redux';
-import setColors from '../../actions/changeColor';
+import {addColor} from '../../actions/changeColor';
 
 
 const DarkerAndLighterItem = (props) => {
   return (
       <div className="color-samples__item" onClick={() => {
-        props.dispatch(setColors(`rgb(${props.color})`));
+        props.dispatch(addColor(`rgb(${props.color})`));
         // props.actions(props.color);
       }} style={{background: `rgb(${props.color})`}}>
       </div>
@@ -17,13 +17,13 @@ const DarkerAndLighterItem = (props) => {
 
 function mapStateToProps(state, ownProps) {
     return {
-        colors: state.mainColorSet
+        colors: state.selectedColors
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: dispatch(setColors)
+        actions: dispatch(addColor)
     };
 }
 

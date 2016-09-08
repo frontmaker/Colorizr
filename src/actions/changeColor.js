@@ -1,6 +1,15 @@
-export default function addColor(color) {
+
+export const addColor = (color) => {
     return {
         type: 'ADD_COLOR',
         color: color
     }
-}
+};
+
+
+export const removeColor = (color) => {
+    return {
+        type: 'REMOVE_COLOR',
+        color: color
+    }
+};

@@ -4,9 +4,14 @@ export default function setColors(state = [], action) {
         case "ADD_COLOR":
             return [...state, action.color]
 
-        case 'SET_COLORS':
-            return [action.colors]
-        
+        case 'REMOVE_COLOR':
+
+            let arr = state.filter((item) => {
+               return item != action.color
+            });
+
+            return arr;
+
         default:
             return state;
     }

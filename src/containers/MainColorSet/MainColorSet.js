@@ -1,7 +1,8 @@
 import React, {PropTypes} from 'react';
 import './MainColorSet.less';
 import {connect} from 'react-redux';
-import addColor from '../../actions/changeColor';
+import {bindActionCreators} from 'redux';
+import {addColor, removeColor} from '../../actions/changeColor';
 import ColorSetItem from '../../components/ColorSetItem/ColorSetItem';
 
 
@@ -19,8 +20,8 @@ class MainColorSet extends React.Component {
 
     removeColor(color) {
 
-        console.log(this.props.colors);
-
+        this.props.dispatch(removeColor(color));
+        
     }
 
 
@@ -75,10 +76,12 @@ function mapStateToProps(state, ownProps) {
 
 
 function mapDispatchToProps(dispatch) {
-    return {
-        actions: dispatch(addColor)
-    };
+    return bindActionCreators({
+        addColor: addColor,
+        removeColor: removeColor
+    }, dispatch)
 }
+
 
 export default connect(mapStateToProps)(MainColorSet);
 
